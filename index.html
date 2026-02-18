@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Plomberie-Visio | Assistance plomberie en visio (Meet) – Clichy</title>
   <meta name="description" content="Plomberie-Visio : diagnostic et assistance plomberie en visioconférence Google Meet. Réservation + paiement en ligne avant la visio. Clichy & partout en France." />
+
   <style>
     :root{
       --bg:#0b1220;
@@ -20,6 +21,7 @@
       --radius: 18px;
     }
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -62,6 +64,7 @@
       background: rgba(255,255,255,.06);
       text-decoration:none;font-weight:800;
       box-shadow: 0 10px 22px rgba(0,0,0,.22);
+      cursor:pointer;
     }
     .btn.primary{
       border-color: rgba(110,231,255,.35);
@@ -104,9 +107,6 @@
     }
     .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
     @media (max-width: 900px){ .grid3{grid-template-columns:1fr} }
-    .price{
-      position:relative; overflow:hidden;
-    }
     .price h3{margin:0 0 6px;font-size:18px}
     .pval{font-size:34px;font-weight:900;margin:6px 0 10px}
     .pval small{font-size:14px;color:var(--muted);font-weight:700}
@@ -148,15 +148,12 @@
       background: rgba(110,231,255,.08);
       color:#dff7ff;
     }
-    .calwrap{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      overflow:hidden;
-      min-height: 720px;
-    }
   </style>
+
+  <!-- Calendly popup CSS -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 </head>
+
 <body>
   <div class="container">
     <header class="nav">
@@ -207,7 +204,7 @@
           <p>Simple en 5 étapes</p>
         </div>
         <div class="steps">
-          <div class="step"><b>1. Choix</b><span class="mini">20/45 min ou urgence</span></div>
+          <div class="step"><b>1. Choix</b><span class="mini">Visio ou urgence</span></div>
           <div class="step"><b>2. Créneau</b><span class="mini">Vous sélectionnez l’heure</span></div>
           <div class="step"><b>3. Paiement</b><span class="mini">CB/Apple Pay/Google Pay</span></div>
           <div class="step"><b>4. Lien Meet</b><span class="mini">Envoyé par email</span></div>
@@ -227,12 +224,12 @@
     <section id="offres" class="panel" style="margin-top:22px">
       <div class="section-title">
         <h2>Offres</h2>
-        <p>Paiement en ligne avant la PMAD (Meet)</p>
+        <p>Paiement en ligne avant la visio (Meet)</p>
       </div>
 
       <div class="grid3">
         <div class="panel price" style="padding:18px">
-          <span class="tag">Visio 20 min</span>
+          <span class="tag">Visio 30 min</span>
           <div class="pval">25€ <small>TTC</small></div>
           <ul>
             <li>Diagnostic rapide</li>
@@ -245,7 +242,7 @@
         </div>
 
         <div class="panel price" style="padding:18px">
-          <span class="tag">Visio 45 min</span>
+          <span class="tag">Visio 40 min</span>
           <div class="pval">50€ <small>TTC</small></div>
           <ul>
             <li>Problème plus complexe</li>
@@ -275,27 +272,29 @@
     <section id="rdv" class="panel">
       <div class="section-title">
         <h2>Prendre rendez-vous & payer</h2>
-        <p>Calendrier + paiement intégré</p>
+        <p>Paiement obligatoire avant la visio</p>
       </div>
 
       <p class="mini" style="margin-top:10px">
+        Choisis ta formule, réserve ton créneau, puis paie en ligne.
+        Tu reçois ensuite le lien Google Meet automatiquement par email.
       </p>
 
-      <div class="calwrap" aria-label="Calendrier de réservation">
-<!-- Début de widget en ligne Calendly -->
-<div class="calendly-inline-widget"
-     data-url="https://calendly.com/contact-plomberie-visio?hide_gdpr_banner=1"
-     style="min-width:320px;height:720px;">
-</div>
+      <div class="actions" style="margin-top:14px">
+        <a class="btn primary" href="#"
+           onclick="openCalendly('https://calendly.com/contact-plomberie-visio/30min'); return false;">
+          Visio 30 min — 25 €
+        </a>
 
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
-<!-- Fin de widget en ligne Calendly -->
+        <a class="btn primary" href="#"
+           onclick="openCalendly('https://calendly.com/contact-plomberie-visio/tarif-de-40-min'); return false;">
+          Visio 40 min — 50 €
+        </a>
 
-
-      <script async src="https://assets.calendly.com/assets/external/widget.js"></script>
-
-      <div class="mini" style="margin-top:10px">
-        <b>
+        <a class="btn primary" href="#"
+           onclick="openCalendly('https://calendly.com/contact-plomberie-visio/tarif-urgence'); return false;">
+          Urgence 20 min — 45 €
+        </a>
       </div>
     </section>
 
@@ -353,7 +352,7 @@
 
       <details>
         <summary>Remboursement ?</summary>
-        <p class="mini">La prestation n’est pas remboursable une fois la visio commencée. Si vous avez un doute avant, prenez 20 min.</p>
+        <p class="mini">La prestation n’est pas remboursable une fois la visio commencée. Si vous avez un doute avant, prenez une visio courte.</p>
       </details>
     </section>
 
@@ -364,13 +363,13 @@
       </div>
 
       <p class="mini" style="margin-top:10px">
-        <b>Email :</b> <a href="mailto:contact.plomberie.visio@gmail.com">contact.plomberie.visio@gmail.com</a> 
+        <b>Email :</b> <a href="mailto:contact.plomberie.visio@gmail.com">contact.plomberie.visio@gmail.com</a>
         <br />
         <b>Zone :</b> Clichy + visio partout en France
       </p>
 
       <div class="notice">
-        </b> plomberie-visio.fr 
+        <b>Domaine conseillé :</b> plomberie-visio.fr
       </div>
     </section>
 
@@ -386,6 +385,14 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Calendly popup JS -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    function openCalendly(url){
+      Calendly.initPopupWidget({ url: url });
+    }
   </script>
 </body>
 </html>
